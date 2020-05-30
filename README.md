@@ -1,0 +1,2 @@
+auth.json
+VUTTR_BOSSA_BOX
