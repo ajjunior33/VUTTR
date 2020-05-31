@@ -28,7 +28,7 @@ module.exports = {
   },
   async destroy(req, res) {
     const { id } = req.params;
-    const verify = await Tools.findById(id);
+    const verify = await Tools.findOne({ _id: id });
     if (!verify) {
       return res
         .status(400)
@@ -36,7 +36,7 @@ module.exports = {
     }
 
     try {
-      await Tools.findByIdAndDelete(id);
+      await Tools.deleteOne({ _id: id });
       return res.status(204).json();
     } catch (err) {
       return res.status(400).json({

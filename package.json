@@ -6,12 +6,15 @@
   "author": "André Junior <andrejr33@suporteava.com.br>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "jest"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "celebrate": "^12.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jest": "^26.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.16"
   },
