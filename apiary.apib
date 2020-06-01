@@ -1,0 +1,175 @@
+FORMAT: 5A
+HOST: http://vuttrajjunior33-com-br.umbler.net
+
+# VUTTR 
+
+VUTTR (Very Useful Tools to Remember). 
+A aplicação é um simples repositório para gerenciar ferramentas com 
+seus respectivos nomes, 
+links, descrições e tags. 
+
+## Users Collection [/users/register]
+
+### Create New Account [POST]
++ Request (application/json)
+
+        {
+            "username": "test",
+            "email": "test@gmail.com",
+            "password":"test"
+        }
+
++ Response 200 (application/json)
+
+        [
+           {
+              "id": "5ed5441abf89050017836bcb",
+              "messager": "Usuario criado com sucesso.",
+              "status": true,
+              "create": {
+                "_id": "5ed5441abf89050017836bcb",
+                "username": "test",
+                "email": "test@gmail.com",
+                "createdAt": "2020-06-01T18:08:26.098Z",
+                "__v": 0
+              }
+            }
+        ]
+
+## Auth Collection [/users/auth]
+
+
+### Auth Account [POST]
++ Request (application/json)
+
+        {
+            "username":"test",
+            "password":"test"
+        }
++ Response 200 (application/json)
+
+        [
+           {
+              "messager": "Autenticado com sucesso.",
+              "status": true,
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZDU0NDFhYmY4OTA1MDAxNzgzNmJjYiIsImlhdCI6MTU5MTAzNDk0NywiZXhwIjoxNTkxMTIxMzQ3fQ.sr39MoXJIFwuAResxTGL-CDlOG5NvS3PrTg7IdZ-Xwc"
+            }
+        ]
+
+
+## Tools Collection [/tools]
+
+### List Tools [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZDU0NDFhYmY4OTA1MDAxNzgzNmJjYiIsImlhdCI6MTU5MTAzNDk0NywiZXhwIjoxNTkxMTIxMzQ3fQ.sr39MoXJIFwuAResxTGL-CDlOG5NvS3PrTg7IdZ-Xwc"
+
++ Response 200 (application/json)
+
+        [
+          {
+            "tags": [
+              "Documentation"
+            ],
+            "_id": "5ed54e4cbf89050017836bcc",
+            "title": "API Blue Print",
+            "link": "https://apiblueprint.org/documentation/examples/06-requests.html",
+            "description": "System application creation tool",
+            "__v": 0
+          }
+        ]
+
+### Create Tool [POST]
+
++ Request
+
+    + Headers
+        
+            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZDU0NDFhYmY4OTA1MDAxNzgzNmJjYiIsImlhdCI6MTU5MTAzNDk0NywiZXhwIjoxNTkxMTIxMzQ3fQ.sr39MoXJIFwuAResxTGL-CDlOG5NvS3PrTg7IdZ-Xwc"
+
++ Response 200 (application/json)
+
+            {
+              "status": true,
+              "messager": "Ferramenta criada com sucesso.",
+              "data": {
+                "tags": [
+                  "Documentation"
+                ],
+                "_id": "5ed54e4cbf89050017836bcc",
+                "title": "API Blue Print",
+                "link": "https://apiblueprint.org/documentation/examples/06-requests.html",
+                "description": "System application creation tool",
+                "__v": 0
+              }
+            }
+
++ Response 400
+
+            {
+                "messager":"'Não foi possível criar essa ferramenta.",
+                "status": false
+            }
+            
++ Response 401 (application/json)
+
+            {
+              "messager": "Você precisa informar um token.",
+            }
+            {
+              "messager": "Token Error!",
+            }
+            {
+              "messager": "Houve uma má formatação no token",
+            }
+            {
+              "messager": "Token invalido",
+            }
+
+
+## Delete Tool [/tools/{id}]
+
++ Parameters
+
+    + id: 5ed54e4cbf89050017836bcc (string) - An unique identifier of the tool.
+    
+
+### Destroy Tool [DELETE]
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZDU0NDFhYmY4OTA1MDAxNzgzNmJjYiIsImlhdCI6MTU5MTAzNDk0NywiZXhwIjoxNTkxMTIxMzQ3fQ.sr39MoXJIFwuAResxTGL-CDlOG5NvS3PrTg7IdZ-Xwc"
+            
+
++ Response 204
+
++ Response 401 (application/json)
+
+            {
+              "messager": "Você precisa informar um token.",
+            }
+            {
+              "messager": "Token Error!",
+            }
+            {
+              "messager": "Houve uma má formatação no token",
+            }
+            {
+              "messager": "Token invalido",
+            }
+
++ Response 400
+
+        {
+            "messager": "Ferramenta não encontrada.",
+            "status": false,
+        }
+        {
+            "messager": "Não foi possível excluir essa ferramenta.",
+            "status": false,
+        }
